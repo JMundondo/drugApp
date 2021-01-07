@@ -56,6 +56,18 @@ contract DrugTracking {
         // Drug and current owner mapping , get the drugs in the supply chain exchaining hands
 
         mapping(address => mapping(uint => Drug)) public ownerships ;
+
+        // events  of every data writing 
+        event registerManufacturer(string memory _name , address _account) ;
+        event createDrug(
+          uint _serialNumber ,
+         uint _ndc , 
+         string memory _name ,
+          string memory _manufacturerName
+
+        ) ;
+
+        event changeOwnership(uint _serialNumber , address _oldOwner , address _newOwner ) ;
        
 
         
@@ -67,6 +79,7 @@ contract DrugTracking {
             require(msg.sender == owner , "you are not authorized to register Manufacturers") ;
             manufacturers[_id] = Manufacturer(_id , _name, _account ) ;
             manufacturersCount ++;
+            emit registerManufacturer(_name , _account) ;
         }
         
         function createDrug(uint _serialNumber , uint _ndc , string memory _name , string memory _manufacturerName)  internal {
@@ -74,7 +87,7 @@ contract DrugTracking {
          drugs[_serialNumber] = Drug(_serialNumber , _ndc, _name ,_manufacturerName ,msg.sender) ;
          ownerships[msg.sender][_serialNumber] = Drug(_serialNumber , _ndc, _name,_manufacturerName,msg.sender) ;
          drugsCount ++ ;              
-
+         emit createDrug(_serialNumber , _ndc , _name , _manufacturerName);
 
 
         }
@@ -103,6 +116,8 @@ contract DrugTracking {
          require(msg.sender == currentDrug.currentOwner  , "you`re not the owner of this drug") ;
          currentDrug.currentOwner = _newOwner ;
          drugTrack.push(currentDrug);
+         emit changeOwnership(_serialNumber , msg.sender , _newOwner) ;
+         
 
        }
 
