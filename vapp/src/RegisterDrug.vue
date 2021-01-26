@@ -43,6 +43,33 @@ export default {
       })
     }
   },
+   mounted(){
+  
+        const contractEventHandler = ({contractName , eventName , data}) =>{
+            
+         if(eventName == 'createDrugs'){
+           
+
+     const display = `${contractName}(${eventName}):${data._serialNumbers} , ${data._ndcs} ,${data._names} , ${data._manufacturerNames}`;
+          
+    const subOptions = {duration:6000} ;
+    this.$toasted.show(display , subOptions);
+         }
+         
+          
+        
+
+        
+        }
+        
+        this.$drizzleEvents.$on('drizzle/contractEvent' , payload =>{
+        contractEventHandler(payload) ;
+        
+        }
+        
+        );
+    
+    },
    data() {
     return {
       sample: {
