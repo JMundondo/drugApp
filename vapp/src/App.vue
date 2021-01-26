@@ -1,6 +1,7 @@
 <template>
   <div v-if="isDrizzleInitialized" id="app">
     <img alt="Vue logo" src="./assets/logo.jpeg" />
+    <Toast/>
 
     <div class="section">
       <h2>Show the Accounts</h2>
@@ -9,7 +10,7 @@
     <div class="section">
       <h2>register Manufacturer</h2>
       <RegisterManufacturer />
-      <Toast/>
+      
       
     </div>
  

@@ -1,42 +1,64 @@
 <template>
-<h3>{{data}} {{eventName}}</h3>
+<section></section>
 
     
 </template>
 <script>
+//import { generateStore, EventActions } from '@drizzle/store';
+
+//import  Toasted from 'vue-toasted';
+//import Vue from 'vue';
+//Vue.use('Toasted');
+
+
 
 
 export default {
-    data(){
-        return {
-            eventName: '',
-            data:''
-        }
-    },
+    name: 'Toast',
+  
     
     mounted(){
+     /*   const contractEventNotifier = store => next => action => {
+  if (action.type === EventActions.EVENT_FIRED) {
+    const contract = action.name
+    const contractEvent = action.event.event
+    const message = action.event.returnValues._message
+    const display = `${contract}(${contractEvent}): ${message}`
+
+    toast.success(display, { position: toast.POSITION.TOP_RIGHT })
+  }
+  return next(action)
+}*/
         const contractEventHandler = ({contractName , eventName , data}) =>{
             
-    
-          const display = `${contractName}(${eventName}):${data.newValue}`;
-          alert(`${contractName}(${eventName}):${data.newValue}`) ;
+         if(eventName == 'registerManufacturers'){
+           
+
+            const display = `${contractName}(${eventName}):${data._names} , ${data._accounts}`;
+          alert(`${contractName}(${eventName}):${data._names} , ${data._accounts}`) ;
           const subOptions = {duration:3000} ;
           this.$toasted.show(display , subOptions);
-          this.eventName = eventName ;
-          this.data = data ;
+         }
          
+          
         
 
         
         }
         
-        this.$drizzleEvents.$on('drizzle/contractEvents' , payload =>
-       contractEventHandler(payload)  
+        this.$drizzleEvents.$on('drizzle/contractEvent' , payload =>{
+        contractEventHandler(payload) ;
+        
+        }
+        
         );
     
+    },
+    
+   
     }
 
-}
+
 
 
 </script>

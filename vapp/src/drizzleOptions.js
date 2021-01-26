@@ -14,7 +14,8 @@ const options = {
   contracts: [SimpleStorage, ComplexStorage, TutorialToken, DrugTracking],
   events: {
   
-    DrugTracking: ['registerManufacturers'] 
+    DrugTracking: ['registerManufacturers','createDrugs','changeOwnerships'] 
+    
   },
   polls: {
     accounts: 15000
