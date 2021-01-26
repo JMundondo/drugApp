@@ -15,6 +15,10 @@ contract DrugTracking {
       uint public drugsCount = 0;
       // track drug information 
       Drug[] public drugTrack ;
+       Manufacturer public createdManufacturer ;
+       Drug public createdDrug ;
+
+
        
       
 
@@ -58,16 +62,16 @@ contract DrugTracking {
         mapping(address => mapping(uint => Drug)) public ownerships ;
 
         // events  of every data writing 
-        event registerManufacturer(string memory _name , address _account) ;
-        event createDrug(
-          uint _serialNumber ,
-         uint _ndc , 
-         string memory _name ,
-          string memory _manufacturerName
+        event registerManufacturers(string  _names , address _accounts) ;
+        event createDrugs(
+          uint _serialNumbers ,
+         uint _ndcs , 
+         string  _names ,
+          string  _manufacturerNames
 
         ) ;
 
-        event changeOwnership(uint _serialNumber , address _oldOwner , address _newOwner ) ;
+        event changeOwnerships(uint _serialNumbers , address _oldOwners , address _newOwners ) ;
        
 
         
@@ -78,16 +82,18 @@ contract DrugTracking {
         function registerManufacturer(uint  _id , string memory _name , address   _account) payable public{
             require(msg.sender == owner , "you are not authorized to register Manufacturers") ;
             manufacturers[_id] = Manufacturer(_id , _name, _account ) ;
+            createdManufacturer = Manufacturer(_id , _name, _account ) ;
             manufacturersCount ++;
-            emit registerManufacturer(_name , _account) ;
+            emit registerManufacturers(_name , _account) ;
         }
         
         function createDrug(uint _serialNumber , uint _ndc , string memory _name , string memory _manufacturerName)  internal {
             
          drugs[_serialNumber] = Drug(_serialNumber , _ndc, _name ,_manufacturerName ,msg.sender) ;
+         createdDrug = Drug(_serialNumber , _ndc, _name ,_manufacturerName ,msg.sender) ;
          ownerships[msg.sender][_serialNumber] = Drug(_serialNumber , _ndc, _name,_manufacturerName,msg.sender) ;
          drugsCount ++ ;              
-         emit createDrug(_serialNumber , _ndc , _name , _manufacturerName);
+         emit createDrugs(_serialNumber , _ndc , _name , _manufacturerName);
 
 
         }
@@ -100,6 +106,7 @@ contract DrugTracking {
           i ++ ;
           if(cherck.account == msg.sender) {
             createDrug(_serialNumber ,_ndc ,_name ,_manufacturerName) ;
+            
           }
           
           }
@@ -116,7 +123,7 @@ contract DrugTracking {
          require(msg.sender == currentDrug.currentOwner  , "you`re not the owner of this drug") ;
          currentDrug.currentOwner = _newOwner ;
          drugTrack.push(currentDrug);
-         emit changeOwnership(_serialNumber , msg.sender , _newOwner) ;
+         emit changeOwnerships(_serialNumber , msg.sender , _newOwner) ;
          
 
        }

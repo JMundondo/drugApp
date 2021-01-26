@@ -8,6 +8,12 @@ import Vuex from 'vuex'
 import drizzleVuePlugin from '@drizzle/vue-plugin'
 import drizzleOptions from './drizzleOptions'
 
+import Toasted from 'vue-toasted' ;
+
+Vue.use(Toasted) ;
+
+
+
 Vue.use(Vuex)
 const store = new Vuex.Store({ state: {} })
 

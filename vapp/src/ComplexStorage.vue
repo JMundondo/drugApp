@@ -80,7 +80,7 @@ div.code {
 }
 
 div.flex-container {
-  background-color: #efefef;
+  background-color: #c93b22;
   display: flex;
 }
 

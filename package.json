@@ -17,6 +17,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "openzeppelin-solidity": "^2.1.1"
+    "openzeppelin-solidity": "^2.1.1",
+    "vue-simple-alert": "^1.1.1",
+    "vue-toasted": "^1.1.28"
+  },
+  "devDependencies": {
+    "vue": "^2.0.8"
   }
 }

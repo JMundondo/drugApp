@@ -4001,12 +4001,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x6466589861DF023F40C7050761838A4A94713905",
-      "transactionHash": "0xcc897b8b9299cfb1f70349aabfc09ab6e01dbe41141af82bd83f54e7fe6370cf"
+      "address": "0x8131497066C050F8A67Fde08030a912cc7E08595",
+      "transactionHash": "0x3209f392e2bd81d55f666294f8aece9689780a382dea0094568d87f038095d34"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-06T15:00:58.430Z",
+  "updatedAt": "2021-01-26T10:43:40.840Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

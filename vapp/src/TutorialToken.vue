@@ -41,7 +41,7 @@ export default {
     },
 
     placeholders() {
-      return ['To Address', 'Amount to Send']
+      return ['To Address', 'Amount to Send', ]
     }
   }
 }

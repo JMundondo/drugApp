@@ -1,25 +1,41 @@
 <template>
   <div v-if="isDrizzleInitialized" id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img alt="Vue logo" src="./assets/logo.jpeg" />
 
     <div class="section">
       <h2>Show the Accounts</h2>
       <drizzle-account units="Ether" :precision="2" />
     </div>
-
     <div class="section">
-      <h2>Tutorial Token</h2>
-      <TutorialToken />
+      <h2>register Manufacturer</h2>
+      <RegisterManufacturer />
+      <Toast/>
+      
     </div>
-
+ 
     <div class="section">
-      <h2>Simple Storage</h2>
-      <SimpleStorage />
+      <h2>register New Drug</h2>
+      <RegisterDrug />
+      
     </div>
-
     <div class="section">
-      <h2>Complex Storage</h2>
-      <ComplexStorage />
+      <h2>Transfer Ownership</h2>
+      <ChangeOwnership/>
+      
+    </div>
+    <div>
+    <h1>Drugs Transfers Through the supply chain </h1>
+    
+    </div>
+    <div class="section">
+      <h2>watch Array</h2>
+      <ComplexStorage/>
+      
+    </div>
+    <div class="section">
+      <h2>watch Mapping</h2>
+      <GetManufacturer/>
+      
     </div>
   </div>
 
@@ -27,21 +43,43 @@
 </template>
 
 <script>
-import TutorialToken from './TutorialToken'
-import SimpleStorage from './SimpleStorage'
-import ComplexStorage from './ComplexStorage'
-import { mapGetters } from 'vuex'
+
+import { mapGetters } from 'vuex' ;
+
+import RegisterManufacturer from './RegisterManufacturer' ;
+
+import  RegisterDrug from './RegisterDrug' ;
+
+import   ChangeOwnership  from './ChangeOwnership' ;
+import ComplexStorage from './ComplexStorage';
+
+//import DrugArray from './DrugArray'
+import GetManufacturer from './GetManufacturer'
+
+
+
+import Toast from './Toast';
+
+
 
 export default {
   name: 'app',
-  components: {
+  computed: mapGetters('drizzle', ['isDrizzleInitialized']),
+  components:{
+   
+    RegisterManufacturer,
+    RegisterDrug,
+    ChangeOwnership,
+    Toast,
     ComplexStorage,
-    TutorialToken,
-    SimpleStorage
-  },
+    GetManufacturer
+   // DrugArray
+    
 
-  computed: mapGetters('drizzle', ['isDrizzleInitialized'])
-}
+  }
+
+  
+} 
 </script>
 
 <style>
@@ -50,7 +88,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ece4f180;
   margin-top: 60px;
+  background-color: rgb(6, 57, 70);
+}
+img {
+  width: 15%;
+  height: auto;
 }
 </style>
